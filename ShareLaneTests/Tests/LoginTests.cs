@@ -14,18 +14,20 @@ namespace ShareLaneTests.Tests
         [Test, Category("Positive")]
         public void LoginWithValidCredentials()
         {
-            string email = "vladimir_fuente@465.74.sharelane.com";
-            string password = "1111";
-
-            MainPage.TryToLogin(email, password);
-
             Assert.IsTrue(MainPage.CheckLogOutLink());
         }
 
         [Test, Category("Negative")]
-        public void LoginWithInvalidCredentials()
+        public void LoginWithEmptyCredentials()
         {
             string errorMessage = "Oops, error. Email and/or password don't match our records";
+
+            if (MainPage.CheckLogOutLink()) 
+            {
+                MainPage.TryToLogOut();
+                ChromeDriver.Navigate().GoToUrl("https://www.sharelane.com/cgi-bin/main.py");
+            }
+
             MainPage.TryToLogin();
             var error = ChromeDriver.FindElement(By.ClassName("error_message"));
 

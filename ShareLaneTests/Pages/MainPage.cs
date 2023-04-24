@@ -37,11 +37,21 @@ namespace ShareLaneTests.Pages
             ChromeDriver.FindElement(LoginButtonLocator).Click();
         }
 
+        void ClickLogOut()
+        {
+            ChromeDriver.FindElement(LogOutLinkLocator).Click();
+        }
+
         public void TryToLogin(string email = "", string password = "")
         {
             SetEmail (email);
             SetPassword (password);
             ClickLoginButton ();
+        }
+
+        public void TryToLogOut()
+        {
+            ClickLogOut();
         }
 
         public bool CheckLogOutLink()

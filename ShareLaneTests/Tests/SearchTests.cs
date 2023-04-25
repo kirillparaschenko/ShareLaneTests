@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using ShareLaneTests.Pages;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,19 @@ namespace ShareLaneTests.Tests
 {
     internal class SearchTests : BaseTest
     {
+        [SetUp]
+        public void SetUp()
+        {
+            BookPage = new BookPage(ChromeDriver);
+        }
+
         [Test, Category("Positive")]
         public void SearchValidBook()
         {
             string bookName = "The Analects of Confucius";
             MainPage.SetSearch(bookName);
-
+            
             Assert.AreEqual(bookName, BookPage.ReadBookName());
-            Assert.That(bookName, Is.EqualTo(ChromeDriver.FindElement(By.XPath("//p[2]")).Text));
         }
 
         [Test, Category("Negtive")]

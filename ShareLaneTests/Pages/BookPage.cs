@@ -11,20 +11,20 @@ namespace ShareLaneTests.Pages
     internal class BookPage : BasePage
     {
         By AddToCartImage = By.XPath("//p[2]/a/img");
+        By BookName = By.XPath("//p[2]");
+
         public BookPage(WebDriver driver) : base(driver)
         {
-
         }
 
-        void ClickAddtoCart()
+        public void ClickAddtoCart()
         {
             ChromeDriver.FindElement(AddToCartImage).Click();
         }
 
-        public void CheckBookPage(string bookName)
+        public string ReadBookName()
         {
-            string currentBookName = ChromeDriver.FindElement(By.XPath("//p[2]")).Text;
-            Assert.AreEqual(bookName, currentBookName);
+            return ChromeDriver.FindElement(BookName).Text;
         }
     }
 }

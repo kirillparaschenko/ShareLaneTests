@@ -41,6 +41,10 @@ namespace ShareLaneTests.Pages
         {
             ChromeDriver.FindElement(LoginButtonLocator).Click();
         }
+        public void ClickBook()
+        {
+            ChromeDriver.FindElement(FirstBookLink).Click();
+        }
 
         void ClickLogOut()
         {
@@ -59,10 +63,27 @@ namespace ShareLaneTests.Pages
             ClickLogOut();
         }
 
-        public void SetSearch(string bookName)
+        public BookPage SetSearch(string bookName)
         {
             ChromeDriver.FindElement(SearchInputLocator).SendKeys(bookName);
             ChromeDriver.FindElement(SearchButton).Click ();
+
+            return new BookPage(ChromeDriver);
+        }
+
+        public BookPage SelectBook()
+        {
+            string firstBookName = ChromeDriver.FindElement(FirstBookLink).Text;
+            ClickBook();
+
+            return new BookPage(ChromeDriver);
+            //TO DO: BookPage.Check add check of book name
+        }
+
+        public ShopingCartPage OpenShoppingCart()
+        {
+            ChromeDriver.FindElement(ShopingCartLinkLocator).Click();
+            return new ShopingCartPage(ChromeDriver);
         }
 
         public bool CheckLogOutLink()

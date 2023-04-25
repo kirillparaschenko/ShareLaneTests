@@ -8,6 +8,9 @@ namespace ShareLaneTests.Tests
     {
         protected WebDriver ChromeDriver { get; set; }
         public MainPage MainPage { get; set; }
+        public BookPage BookPage { get; set; }
+        public ShopingCartPage ShopingCartPage { get; set; }
+        public CheckOutPage CheckOutPage { get; set; }
 
         [SetUp]
         public void Setup()

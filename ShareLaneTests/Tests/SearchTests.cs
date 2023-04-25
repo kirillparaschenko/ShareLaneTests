@@ -16,6 +16,7 @@ namespace ShareLaneTests.Tests
             string bookName = "The Analects of Confucius";
             MainPage.SetSearch(bookName);
 
+            Assert.AreEqual(bookName, BookPage.ReadBookName());
             Assert.That(bookName, Is.EqualTo(ChromeDriver.FindElement(By.XPath("//p[2]")).Text));
         }
 

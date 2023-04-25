@@ -13,6 +13,7 @@ namespace ShareLaneTests.Pages
         By CardTypeDropdownLocator = By.Name("card_type_id");
         By CardNumberInputLocator = By.Name("card_number");
         By MakePaymetnButtonLocator = By.XPath("//input[@value='Make Payment']");
+        By BookNameLocator = By.XPath("//table/tbody/tr[3]/td[2]/p/b");
 
         public CheckOutPage(WebDriver driver) : base(driver)
         {
@@ -41,6 +42,11 @@ namespace ShareLaneTests.Pages
             SelectCardType(cardType);
             SetCardNumber(cardNumber);
             ClickMakePayment();
+        }
+
+        public string ReadBookName()
+        {
+            return ChromeDriver.FindElement(BookNameLocator).Text;
         }
     }
 }

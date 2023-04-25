@@ -12,6 +12,7 @@ namespace ShareLaneTests.Pages
         By UpdateButtonLocator = By.XPath("//input[@value='Update']");
         By ProceedToCheckOutButtonLocatot = By.XPath("//input[@value='Proceed to Checkout']");
         By QantityInputLocator = By.Name("q");
+        By BookNameLocator = By.XPath("//table/tbody/tr[2]/td[2]");
 
         public ShopingCartPage(WebDriver driver) : base(driver)
         {
@@ -21,6 +22,11 @@ namespace ShareLaneTests.Pages
         {
             ChromeDriver.FindElement(ProceedToCheckOutButtonLocatot).Click();
             return new CheckOutPage(ChromeDriver);
+        }
+
+        public string ReadBookName()
+        {
+            return ChromeDriver.FindElement(BookNameLocator).Text;
         }
     }
 }

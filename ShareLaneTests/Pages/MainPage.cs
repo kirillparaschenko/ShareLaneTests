@@ -77,7 +77,6 @@ namespace ShareLaneTests.Pages
             ClickBook();
 
             return new BookPage(ChromeDriver);
-            //TO DO: BookPage.Check add check of book name
         }
 
         public ShopingCartPage OpenShoppingCart()

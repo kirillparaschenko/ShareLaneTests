@@ -20,11 +20,11 @@ namespace ShareLaneTests.Tests
             ShopingCartPage = new ShopingCartPage(ChromeDriver);
             CheckOutPage = new CheckOutPage(ChromeDriver);
 
-            string email = "prashant_watson@693.74.sharelane.com";
+            string email = "marina_fuente@2033.2.sharelane.com";
             string password = "1111";
 
             cardType = "Visa";
-            cardNumber = "1111111111112013";
+            cardNumber = "1111111111118832";
 
             MainPage.TryToLogin(email, password);
         }
@@ -35,9 +35,20 @@ namespace ShareLaneTests.Tests
             string sucsessMessage = "Thank you for your order!!!";
 
             MainPage.SelectBook();
+
+            var bookName = BookPage.ReadBookName();
             BookPage.ClickAddtoCart();
+
             MainPage.OpenShoppingCart();
+
+            var bookNameInCart = ShopingCartPage.ReadBookName();
+            Assert.AreEqual(bookName, bookNameInCart);
+
             ShopingCartPage.ClickProceedToCheckOut();
+
+            var bookNameInOrder = CheckOutPage.ReadBookName();
+            Assert.AreEqual(bookNameInOrder, bookNameInCart);
+
             CheckOutPage.MakePayment(cardType, cardNumber);
 
             var message = ChromeDriver.FindElement(By.XPath("//table/tbody/tr[2]/td/p/font/b"));
